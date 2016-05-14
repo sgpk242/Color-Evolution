@@ -1,8 +1,8 @@
-//
-// Setting up canvas
-//
+// Set up canvas
 var canvas = document.getElementById("genetic");
 var ctx = canvas.getContext("2d");
+
+// Create target color (most fit)
 tr = Math.floor(Math.random() * 256);
 tg = Math.floor(Math.random() * 256);
 tb = Math.floor(Math.random() * 256);
@@ -11,26 +11,8 @@ ctx.font = "18px Arial";
 ctx.fillStyle = "black";
 ctx.fillText("Target Color",450,150);
 
+// Initialize population with 100 randomly colored boxes
 var objArray = [];
-
-function component(width, height, r, g, b, x, y, font) {
-    this.fitness = Math.sqrt(Math.pow(r-tr,2) + Math.pow(g-tg,2) + Math.pow(b-tb,2));
-    this.r = r;
-    this.g = g;
-    this.b = b;
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
-    context = ctx;
-    context.fillStyle = "rgb(" + r + "," + g + "," + b +")";
-    context.fillRect(this.x, this.y, this.width, this.height);
-    context.fillStyle = "black";
-    context.font = font;
-    var txt = this.fitness.toFixed(2);
-    context.fillText(txt, this.x+this.width/2-context.measureText(txt).width/2, this.y+this.height/2); 
-}
-
 var x = 10;
 var y = 10;
 for (var i = 1; i < 101; i++) {
@@ -43,10 +25,7 @@ for (var i = 1; i < 101; i++) {
     if (i % 10 == 0){ x = 10; y += 40; } else { x += 40; }
 }
 
-//
 // Genetic algorithm
-//
-
 var generation = 1;
 
 ctx.fillStyle = "black";
@@ -123,70 +102,6 @@ function crossover(arr) {
     }
     
     return replacements;
-}
-
-
-function selection() {
-     // Choose 6 members to mate
-     var max1 = 99;
-     var max2 = 100;
-     var max3 = 101;
-     var one, two, three; 
-     for (var k = 0; k < objArray.length; k++) {
-        if (objArray[k].fitness < max1) {
-            one = k;
-            max1 = objArray[k].fitness;
-        } 
-        if (objArray[k].fitness < max2 && objArray[k].fitness > max1) {
-            two = k;
-            max2 = objArray[k].fitness;
-        }
-        if (objArray[k].fitness < max3 && objArray[k].fitness > max2) {
-            three = k;
-            max3 = objArray[k].fitness;
-        }
-     }
-     
-     var four=0, five=0, six=0;
-     while (one == two || two == three || three == four || four == five || five == six)
-     {
-             four = Math.floor(Math.random() * 100);
-             five = Math.floor(Math.random() * 100);
-             six = Math.floor(Math.random() * 100);
-     }
-    
-     // Choose the worst 3 members to replace with offspring
-     var max1 = -99;
-     var max2 = -100;
-     var max3 = -101;
-     var bad1, bad2, bad3; 
-     for (var k = 0; k < objArray.length; k++) {
-        if (objArray[k].fitness > max1) {
-            bad1 = k;
-            max1 = objArray[k].fitness;
-        } 
-        if (objArray[k].fitness > max2 && objArray[k].fitness < max1) {
-            bad2 = k;
-            max2 = objArray[k].fitness;
-        }
-        if (objArray[k].fitness > max3 && objArray[k].fitness < max2) {
-            bad3 = k;
-            max3 = objArray[k].fitness;
-        }
-     }
-     
-     // Return array
-     var arr = new Array();
-     arr[0] = one;
-     arr[1] = two;
-     arr[2] = three;
-     arr[3] = four;
-     arr[4] = five;
-     arr[5] = six;
-     arr[6] = bad1;
-     arr[7] = bad2;
-     arr[8] = bad3;
-     return arr;
 }
  
 function compare(a,b) {
