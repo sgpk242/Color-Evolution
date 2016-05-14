@@ -1,5 +1,5 @@
 function selection(arr) {
-     // Choose 6 members to mate
+     // Choose 3 most fit members of current generation
      var max1 = 99;
      var max2 = 100;
      var max3 = 101;
@@ -19,6 +19,7 @@ function selection(arr) {
         }
      }
      
+     // Choose random 3 members of population - THIS SHOULD BE CHANGED
      var four=0, five=0, six=0;
      while (one == two || two == three || three == four || four == five || five == six)
      {
