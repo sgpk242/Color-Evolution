@@ -31,14 +31,14 @@ ctx.font = "18px Arial";
 var generation = 1;
 ctx.fillText("Generation " + generation, 450, 260);
 
-// Update generation every 30 ms
-function start() {
-    var interv = setInterval(function(){
-                     compete();
-                 }, 30);
-}
-
 // Start evolution when button is clicked
 document.getElementById('start').addEventListener('click', function () {
-    start();
+    start(objArray);
 }, false);
+
+// Update generation every 30 ms
+function start(arr) {
+    var interv = setInterval(function(){
+                     compete(arr);
+                 }, 30);
+}
