@@ -1,11 +1,9 @@
 function compete() {
     generation += 1;
-
+    // clear screen
     canvas.getContext("2d").clearRect(420, 230, 200, 40);
-
     // Selection
     var members = selection();
-    
     // Crossover
     replacements = crossover([objArray[members[0]], objArray[members[1]], objArray[members[2]], objArray[members[3]], objArray[members[4]], objArray[members[5]]]);
 
