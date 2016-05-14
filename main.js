@@ -25,18 +25,20 @@ for (var i = 1; i < 101; i++) {
     if (i % 10 == 0){ x = 10; y += 40; } else { x += 40; }
 }
 
-// Genetic algorithm
+// Create "Generation: x" text
 ctx.fillStyle = "black";
 ctx.font = "18px Arial";
 var generation = 1;
 ctx.fillText("Generation " + generation, 450, 260);
 
+// Update generation every 30 ms
 function start() {
     var interv = setInterval(function(){
                      compete();
                  }, 30);
 }
 
+// Start evolution when button is clicked
 document.getElementById('start').addEventListener('click', function () {
     start();
 }, false);
