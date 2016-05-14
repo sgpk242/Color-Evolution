@@ -1,11 +1,11 @@
-function compete() {
+function compete(arr) {
     generation += 1;
     // clear screen
     canvas.getContext("2d").clearRect(420, 230, 200, 40);
     // Selection
-    var members = selection();
+    var members = selection(arr);
     // Crossover
-    replacements = crossover([objArray[members[0]], objArray[members[1]], objArray[members[2]], objArray[members[3]], objArray[members[4]], objArray[members[5]]]);
+    replacements = crossover([arr[members[0]], arr[members[1]], arr[members[2]], arr[members[3]], arr[members[4]], arr[members[5]]]);
 
     // Mutation
     for (var i = 0; i < 3; i++) {
@@ -23,21 +23,21 @@ function compete() {
     
     // Replacement
     for (var z = 0; z < 3; z++) {
-        replacements[z].x = objArray[members[z+6]].x;
-        replacements[z].y = objArray[members[z+6]].y;
+        replacements[z].x = arr[members[z+6]].x;
+        replacements[z].y = arr[members[z+6]].y;
     }
-    objArray[members[6]] = replacements[0];
-    objArray[members[7]] = replacements[1];
-    objArray[members[8]] = replacements[2];
+    arr[members[6]] = replacements[0];
+    arr[members[7]] = replacements[1];
+    arr[members[8]] = replacements[2];
     
     // Redraw
     for (var z = 0; z < 3; z++) {
-        canvas.getContext("2d").fillStyle = "rgb(" + objArray[members[z+6]].r + "," + objArray[members[z+6]].g + "," + objArray[members[z+6]].b +")";
-        canvas.getContext("2d").fillRect(objArray[members[z+6]].x, objArray[members[z+6]].y, 30, 30);
-        var txt = objArray[members[z+6]].fitness.toFixed(2);
+        canvas.getContext("2d").fillStyle = "rgb(" + arr[members[z+6]].r + "," + arr[members[z+6]].g + "," + arr[members[z+6]].b +")";
+        canvas.getContext("2d").fillRect(arr[members[z+6]].x, arr[members[z+6]].y, 30, 30);
+        var txt = arr[members[z+6]].fitness.toFixed(2);
         canvas.getContext("2d").fillStyle = "black";
         canvas.getContext("2d").font = "9px Arial";
-        canvas.getContext("2d").fillText(txt, objArray[members[z+6]].x+objArray[members[z+6]].width/2-canvas.getContext("2d").measureText(txt).width/2, objArray[members[z+6]].y+objArray[members[z+6]].height/2); 
+        canvas.getContext("2d").fillText(txt, arr[members[z+6]].x+arr[members[z+6]].width/2-canvas.getContext("2d").measureText(txt).width/2, arr[members[z+6]].y+arr[members[z+6]].height/2); 
     }
     
     // Change generation title
