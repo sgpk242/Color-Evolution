@@ -1,21 +1,21 @@
-function selection() {
+function selection(arr) {
      // Choose 6 members to mate
      var max1 = 99;
      var max2 = 100;
      var max3 = 101;
      var one, two, three; 
-     for (var k = 0; k < objArray.length; k++) {
-        if (objArray[k].fitness < max1) {
+     for (var k = 0; k < arr.length; k++) {
+        if (arr[k].fitness < max1) {
             one = k;
-            max1 = objArray[k].fitness;
+            max1 = arr[k].fitness;
         } 
-        if (objArray[k].fitness < max2 && objArray[k].fitness > max1) {
+        if (arr[k].fitness < max2 && arr[k].fitness > max1) {
             two = k;
-            max2 = objArray[k].fitness;
+            max2 = arr[k].fitness;
         }
-        if (objArray[k].fitness < max3 && objArray[k].fitness > max2) {
+        if (arr[k].fitness < max3 && arr[k].fitness > max2) {
             three = k;
-            max3 = objArray[k].fitness;
+            max3 = arr[k].fitness;
         }
      }
      
@@ -32,31 +32,31 @@ function selection() {
      var max2 = -100;
      var max3 = -101;
      var bad1, bad2, bad3; 
-     for (var k = 0; k < objArray.length; k++) {
-        if (objArray[k].fitness > max1) {
+     for (var k = 0; k < arr.length; k++) {
+        if (arr[k].fitness > max1) {
             bad1 = k;
-            max1 = objArray[k].fitness;
+            max1 = arr[k].fitness;
         } 
-        if (objArray[k].fitness > max2 && objArray[k].fitness < max1) {
+        if (arr[k].fitness > max2 && arr[k].fitness < max1) {
             bad2 = k;
-            max2 = objArray[k].fitness;
+            max2 = arr[k].fitness;
         }
-        if (objArray[k].fitness > max3 && objArray[k].fitness < max2) {
+        if (arr[k].fitness > max3 && arr[k].fitness < max2) {
             bad3 = k;
-            max3 = objArray[k].fitness;
+            max3 = arr[k].fitness;
         }
      }
      
-     // Return array
-     var arr = new Array();
-     arr[0] = one;
-     arr[1] = two;
-     arr[2] = three;
-     arr[3] = four;
-     arr[4] = five;
-     arr[5] = six;
-     arr[6] = bad1;
-     arr[7] = bad2;
-     arr[8] = bad3;
-     return arr;
+     // Return array - THIS CAN BE IMPROVED
+     var return_arr = new Array();
+     return_arr[0] = one;
+     return_arr[1] = two;
+     return_arr[2] = three;
+     return_arr[3] = four;
+     return_arr[4] = five;
+     return_arr[5] = six;
+     return_arr[6] = bad1;
+     return_arr[7] = bad2;
+     return_arr[8] = bad3;
+     return return_arr;
 }
